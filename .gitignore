@@ -1,0 +1,82 @@
+# =========================
+# Root-level ignores
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# .NET / C# / Visual Studio
+# =========================
+Api/bin/
+Api/obj/
+Api/*.user
+Api/*.suo
+Api/*.userosscache
+Api/*.sln.docstates
+Api/.vs/
+Api/.vscode/
+Api/appsettings.Development.json
+
+# NuGet packages
+Api/packages/
+Api/*.nupkg
+Api/*.snupkg
+Api/.nuget/
+
+# Rider
+Api/.idea/
+
+# =========================
+# .NET / C# / Visual Studio FOR TESTS
+# =========================
+Api.Tests/bin/
+Api.Tests/obj/
+Api.Tests/*.user
+Api.Tests/*.suo
+Api.Tests/*.userosscache
+Api.Tests/*.sln.docstates
+Api.Tests/.vs/
+Api.Tests/.vscode/
+Api.Tests/appsettings.Development.json
+
+# NuGet packages
+Api.Tests/packages/
+Api.Tests/*.nupkg
+Api.Tests/*.snupkg
+Api.Tests/.nuget/
+
+# Rider
+Api.Tests/.idea/
+
+# =========================
+# Node / Vite / React (frontend)
+# =========================
+
+# Logs
+ClientApp/logs
+ClientApp/*.log
+ClientApp/npm-debug.log*
+ClientApp/yarn-debug.log*
+ClientApp/yarn-error.log*
+ClientApp/pnpm-debug.log*
+ClientApp/lerna-debug.log*
+
+ClientApp/node_modules
+ClientApp/dist
+ClientApp/dist-ssr
+ClientApp/*.local
+ClientApp/.vite/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sw?
+
+# Environment files
+*/.env
+*/.env.local
+*/.env.*.local
