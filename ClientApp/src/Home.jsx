@@ -3,7 +3,7 @@ import { useState } from "react";
 import { CreateLobby, CanJoinLobby } from "./api/lobby";
 import { CanJoinQueue } from "./api/queue";
 import RetroButton from "./components/RetroButton";
-import Dropdown from "./components/DropDown";
+import Dropdown from "./components/Dropdown";
 import { Input } from "pixel-retroui";
 
 function Home() {
