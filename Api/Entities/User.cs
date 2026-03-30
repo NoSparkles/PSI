@@ -20,3 +20,5 @@ public class RegisteredUser : User
 {
    public string PasswordHash { get; set; } = string.Empty;
 }
+
+// CI
