@@ -19,6 +19,9 @@ public class TicTacToeGame : IGame
       O = 2,
       Empty = 0
    }
+
+   public MatchHistory? History { get; set; }
+
    private record struct TicTacToeMove
    {
       public int X { get; set; }

@@ -206,8 +206,25 @@ public class TournamentService(
                continue;
             }
 
+            var p1 = memoryGame.Players[0];
+            var p2 = memoryGame.Players[1];
+
             var winner = memoryGame.Winner;
             var playersInMemoryGame = memoryGame.Players;
+
+            var history = new MatchHistory(
+               code, 
+               memoryGame.GameType.ToString(), 
+               p1.Id, p1.Name, 
+               p2.Id, p2.Name
+            )
+            {
+               WinnerId = memoryGame.Winner?.Id,
+               MatchStatus = memoryGame.Winner == null ? "Draw" : "Finished",
+               Moves = memoryGame.History.Moves
+            };
+
+            context.MatchHistories.Add(history);
 
             foreach (var dbGame in gamesInCurrentRound)
             {
@@ -365,6 +382,24 @@ public class TournamentService(
       {
          Console.WriteLine($"All games ended for tournament {code}, saving results...");
          await SaveGameResultsAsync(code);
+      }
+   }
+
+   public async Task<List<MatchHistory>> GetUserMatchHistoryAsync(Guid userId)
+   {
+      try
+      {
+         await using var context = await _contextFactory.CreateDbContextAsync();
+
+         return await context.MatchHistories
+               .Where(m => m.PlayerOneId == userId || m.PlayerTwoId == userId)
+               .OrderByDescending(m => m.Timestamp)
+               .ToListAsync();
+      }
+      catch (Exception ex)
+      {
+         Console.WriteLine($"[GetUserMatchHistoryAsync] ERROR: {ex.Message}");
+         return new List<MatchHistory>();
       }
    }
 

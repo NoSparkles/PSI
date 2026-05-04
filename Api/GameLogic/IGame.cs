@@ -12,6 +12,8 @@ public interface IGame
    public bool GameOver { get; }
    public List<User> Players { get; }
 
+   public MatchHistory? History {get; set; }
+
    public object GetState();
    public bool MakeMove(JsonElement moveData, User player);
 }

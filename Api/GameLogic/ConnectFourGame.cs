@@ -18,6 +18,9 @@ public class ConnectFourGame : IGame
       Yellow = 2,
       Empty = 0
    }
+
+   public MatchHistory? History { get; set; }
+
    private struct ConnectFourMove
    {
       public int Column { get; set; }

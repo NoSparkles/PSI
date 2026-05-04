@@ -170,6 +170,7 @@ public class TournamentHub(ITournamentService tournamentService, ILobbyService l
 
       foreach (var game in _tournamentService.getGameListForCurrentRound(code).Values)
       {
+
          foreach (var player in game.Players)
          {
             await Clients.Group(player.Id.ToString()).SendAsync("GameStarted", new
@@ -192,7 +193,34 @@ public class TournamentHub(ITournamentService tournamentService, ILobbyService l
             throw new GameNotFoundException("unknown");
          }
 
-         game.MakeMove(moveData, user);
+         if (game.History is null)
+         {
+            game.History = new MatchHistory(code, game.GameType.ToString())
+            {
+               Moves = new List<Move>()
+            };
+            if (game.Players.Count >= 2)
+            {
+               game.History.PlayerOneId = game.Players[0].Id;
+               game.History.PlayerOneUsername = game.Players[0].Name;
+               game.History.PlayerTwoId = game.Players[1].Id;
+               game.History.PlayerTwoUsername = game.Players[1].Name;
+            }
+         }
+
+         game.History.Moves ??= new List<Move>();
+
+         var move = new Move
+         {
+            MovesJson = moveData.Clone().ToString(),
+            UserId = user.Id,
+            Username = user.Name
+         };
+
+         if (game.MakeMove(moveData, user))
+         {
+            game.History.Moves.Add(move);
+         }
 
          var targetGroup = game.Players;
          var notifyTasks = targetGroup.Select(p =>
