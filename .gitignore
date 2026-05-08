@@ -15,7 +15,6 @@ Api/*.userosscache
 Api/*.sln.docstates
 Api/.vs/
 Api/.vscode/
-Api/appsettings.Development.json
 
 # NuGet packages
 Api/packages/
