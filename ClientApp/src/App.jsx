@@ -7,6 +7,7 @@ import Queue from "./Queue";
 import LobbyPage from "./LobbyPage";
 import GameContainer from "./GameContainer";
 import LeaderBoard from "./LeaderBoard";
+import MatchHistory from "./MatchHistory";
 
 function App() {
    return (
@@ -14,12 +15,14 @@ function App() {
          <Routes>
             <Route path="/" element={<Start />} />
             <Route path="/profile" element={<Profile />} />
+               <Route path="/matchHistory" element={<MatchHistory />} />
             <Route path="/home" element={<Home />} />
             <Route path="/queue" element={<Queue />} />
             <Route path="/leaderboard" element={<LeaderBoard />} />
             <Route path="/match/:code" element={<LobbyPage />}>
                <Route path="game" element={<GameContainer />} />
             </Route>
+            
          </Routes>
       </Router>
    );
