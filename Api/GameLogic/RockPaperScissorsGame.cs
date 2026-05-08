@@ -22,6 +22,9 @@ public class RockPaperScissorsGame : IGame
       public RockPaperScissorsChoice Choice { get; set; }
    }
    public GameType GameType => GameType.RockPaperScissors;
+
+   public MatchHistory? History { get; set; }
+
    private RockPaperScissorsChoice?[] _choices = new RockPaperScissorsChoice?[2];
    public RockPaperScissorsGame(List<User> players)
    {

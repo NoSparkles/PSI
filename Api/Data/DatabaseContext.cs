@@ -11,6 +11,8 @@ public class DatabaseContext(DbContextOptions<DatabaseContext> options) : DbCont
    public DbSet<Game> Games { get; set; } = null!;
    public DbSet<UserGame> UserRound { get; set; } = null!;
 
+   public DbSet<MatchHistory> MatchHistories { get; set; } = null!;
+
    protected override void OnModelCreating(ModelBuilder modelBuilder)
    {
       base.OnModelCreating(modelBuilder);
@@ -28,5 +30,13 @@ public class DatabaseContext(DbContextOptions<DatabaseContext> options) : DbCont
 
       modelBuilder.Entity<Game>()
           .ToTable("Games");
+
+      modelBuilder.Entity<MatchHistory>(entity =>
+      {
+        entity.ToTable("MatchHistories");
+        entity.HasKey(m => m.Id);
+
+        entity.OwnsMany(m => m.Moves, moves => moves.ToJson());
+      });
    }
 }
