@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { GetMatchHistory } from "./api/user";
+import { useNavigate } from "react-router-dom";
 
 function MatchHistory() {
+    const navigate = useNavigate();
     const [historyData, setHistoryData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -37,6 +39,8 @@ function MatchHistory() {
     if(error) {
         return <div>{error}</div>;
     }
+
+  
     return (
         <div fontSize="18px">
             <div>
@@ -59,7 +63,7 @@ function MatchHistory() {
                               historyData.map(item => (
                                  <tr 
                                    key={item.id} 
-                                   onClick={() => {}} 
+                                   onClick={() => navigate("/replay", { state: { matchData: item } })}
                                    onMouseEnter={() => setHoveredId(item.id)}
                                    onMouseLeave={() => setHoveredId(null)}
                                    style={{ 
@@ -76,6 +80,23 @@ function MatchHistory() {
                            )}
                     </table>
                 </div>
+                
+            </div>
+            <div style={{ marginBottom: "20px" }}>
+                <p 
+                    onClick={() => navigate("/profile")}
+                    style={{ 
+                        padding: "8px 16px", 
+                        fontSize: "14px", 
+                        cursor: "pointer",
+                        marginTop: "20px",
+                        color: "white",
+                        border: "none",
+                       
+                    }}
+                >
+                    Back to Profile
+                </p>
             </div>
         </div>
     )

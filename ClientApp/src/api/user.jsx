@@ -63,3 +63,4 @@ export async function GetMatchHistory(token) {
    });
    return response;
 }
+
