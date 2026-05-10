@@ -57,6 +57,10 @@ function Profile() {
 	   );
    }
 
+   const handleMatchHistoryNavigate = () => {
+      navigate("/matchHistory");
+   };
+
    const gameTypes = Object.keys(gameStats)
       .filter(key => key.endsWith("Wins") && !key.toLowerCase().startsWith("total"))
       .map(key => key.replace("Wins", ""))
@@ -92,6 +96,10 @@ function Profile() {
                      <p>Win Rate: {getWinRate(gameStats[`${gt}Wins`], gameStats[`${gt}GamesPlayed`])}</p>
                   </div>
                ))}
+               <div>
+                  <hr style={{ marginBlock: "16px", marginBottom: '32px'}}></hr>
+                  <RetroButton onClick={handleMatchHistoryNavigate} bg="#cc7a00" w={350} h={40}>Match History</RetroButton>
+               </div>
             </div>
          )}
       </div>

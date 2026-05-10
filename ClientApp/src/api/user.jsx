@@ -52,3 +52,15 @@ export async function GetGameStats(token) {
    });
    return response;
 }
+
+export async function GetMatchHistory(token) {
+   const response = await fetch("http://localhost:5243/api/matchHistory/my-history", {
+      method: "GET",
+      headers: {
+         "Content-Type": "application/json",
+         "Authorization": "Bearer " + token
+      }
+   });
+   return response;
+}
+
