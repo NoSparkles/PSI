@@ -49,7 +49,7 @@ function RockPaperScissors({ gameId, playerId, connection, onReturnToLobby }) {
          return;
 
       setMyChoice(selectedChoice);
-      const choiceValue = { "Rock": 1, "Paper": 2, "Scissors": 3 }[selectedChoice];
+      const choiceValue = { "Rock": 0, "Paper": 1, "Scissors": 2 }[selectedChoice];
 
       connection.invoke("MakeMove", { PlayerId: playerId, Choice: choiceValue })
          .catch(err => console.error("Move failed:", err));
