@@ -1,7 +1,6 @@
 using Api.Controllers;
 using Api.Entities;
 using Api.Services;
-using Api.Tests;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,7 +8,7 @@ using System.Security.Claims;
 
 using Moq;
 
-namespace Api.Tests.MatchHistory;
+namespace Api.Tests.MatchHistoryTests;
 
 public class GetUserMatchHistoryAsyncTests
 {
@@ -166,12 +165,14 @@ public class MatchHistoryControllerTests
         Mock<ITournamentService> service,
         ClaimsPrincipal? principal = null)
     {
-        var controller = new MatchHistoryController(service.Object, accessor.Object);
-        controller.ControllerContext = new ControllerContext
+        var controller = new MatchHistoryController(service.Object, accessor.Object)
         {
-            HttpContext = new DefaultHttpContext
+            ControllerContext = new ControllerContext
             {
-                User = principal ?? TestHelpers.CreateClaimsPrincipal("testuser")
+                HttpContext = new DefaultHttpContext
+                {
+                    User = principal ?? TestHelpers.CreateClaimsPrincipal("testuser")
+                }
             }
         };
         return controller;
