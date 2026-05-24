@@ -31,6 +31,10 @@ public sealed class TestGameFactory : IGameFactory
       public GameType GameType { get; }
       public bool GameOver { get; private set; }
       public List<User> Players { get; }
+      public MatchHistory? History { get; set; } = new MatchHistory("TEST", "TicTacToe") 
+      { 
+         Moves = new List<Move>() 
+      };
       private readonly TestState _state;
 
       public TestGame(GameType gameType, List<User> players)

@@ -357,6 +357,7 @@ public class TournamentHubUnitTests
       var ctx = BuildContext(items);
 
       var game = new Mock<IGame>();
+      game.SetupProperty(g => g.History); 
       game.Setup(g => g.MakeMove(It.IsAny<JsonElement>(), user)).Throws(new Api.Exceptions.InvalidMoveException("bad", user.Id));
       game.SetupGet(g => g.Players).Returns(new List<User> { user });
 
@@ -388,6 +389,7 @@ public class TournamentHubUnitTests
       var ctx = BuildContext(items);
 
       var game = new Mock<IGame>();
+      game.SetupProperty(g => g.History);
       game.SetupGet(g => g.Players).Returns(new List<User> { playerA, playerB });
       game.Setup(g => g.GetState()).Returns(new { ok = true });
       game.Setup(g => g.MakeMove(It.IsAny<JsonElement>(), playerA)).Returns(true);
