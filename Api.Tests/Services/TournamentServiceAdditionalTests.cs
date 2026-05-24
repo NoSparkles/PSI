@@ -544,7 +544,10 @@ public class TournamentServiceAdditionalTests
         public GameType GameType { get; private set; } = gameType;
         public bool GameOver { get; private set; } = gameOver;
         public List<User> Players { get; private set; } = players;
-        public MatchHistory? History { get; set; }
+        public MatchHistory? History { get; set; } = new MatchHistory("TEST", "TicTacToe") 
+        { 
+            Moves = new List<Move>() 
+        };
 
         public object GetState()
         {
